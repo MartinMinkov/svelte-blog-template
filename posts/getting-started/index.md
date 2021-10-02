@@ -7,11 +7,11 @@ Thanks for checking out my blog template. It's based on the blog I built for my 
 
 Let's go over a few quick things:
 
-- First things first, you should edit the `src/lib/info.js` file to contain your information. This will properly update the parts of the website that display your name and the SEO tags for your posts.
+-   First things first, you should edit the `src/lib/info.js` file to contain your information. This will properly update the parts of the website that display your name and the SEO tags for your posts.
 
-- This template is configured to use the static adapter. If you intend to add SSR you will need to change it to something like `@sveltejs/adapter-node` or your preferred hosting adapter (vercel, netlify, etc).
+-   This template is configured to use the static adapter. If you intend to add SSR you will need to change it to something like `@sveltejs/adapter-node` or your preferred hosting adapter (vercel, netlify, etc).
 
-- This template was built using `@sveltejs/kit@1.0.0-next.123`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
+-   This template was built using `@sveltejs/kit@1.0.0-next.123`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
 
 Now that that's out of the way, let's learn about how to make posts.
 
@@ -46,7 +46,7 @@ For code blocks, it uses a slightly modified Night Owl theme. You can change the
 
 ```javascript
 function helloWorld() {
-  return 'Hello World'
+    return 'Hello World'
 }
 ```
 

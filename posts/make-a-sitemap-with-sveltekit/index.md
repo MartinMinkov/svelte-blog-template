@@ -83,13 +83,13 @@ visual feedback:
 
 ```js
 export async function get() {
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
-  return {
-    headers,
-    body: `<?xml version="1.0" encoding="UTF-8" ?>
+    const headers = {
+        'Cache-Control': 'max-age=0, s-maxage=3600',
+        'Content-Type': 'application/xml'
+    }
+    return {
+        headers,
+        body: `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
@@ -98,7 +98,7 @@ export async function get() {
       xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
       xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
     ></urlset>`
-  }
+    }
 }
 ```
 
@@ -130,13 +130,13 @@ In Matt's template there's an `info.js` file that contains the project
 import { website } from '$lib/info'
 
 export async function get() {
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
-  return {
-    headers,
-    body: `<?xml version="1.0" encoding="UTF-8" ?>
+    const headers = {
+        'Cache-Control': 'max-age=0, s-maxage=3600',
+        'Content-Type': 'application/xml'
+    }
+    return {
+        headers,
+        body: `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
@@ -151,7 +151,7 @@ export async function get() {
         <priority>0.7</priority>
       </url>
     </urlset>`
-  }
+    }
 }
 ```
 
@@ -176,13 +176,13 @@ Here's what the function for `getPosts` looks like:
 
 ```js
 export async function getPosts() {
-  const posts = await Object.entries(import.meta.globEager('/posts/**/*.md'))
-    // get post metadata
-    .map(([, post]) => post.metadata)
-    // sort by date
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    const posts = await Object.entries(import.meta.globEager('/posts/**/*.md'))
+        // get post metadata
+        .map(([, post]) => post.metadata)
+        // sort by date
+        .sort((a, b) => (a.date < b.date ? 1 : -1))
 
-  return posts
+    return posts
 }
 ```
 
@@ -212,18 +212,18 @@ const sitemap = (posts) => `<?xml version="1.0" encoding="UTF-8" ?>
     <priority>0.7</priority>
   </url>
   ${posts
-    .map((post) =>
-      post.isPrivate
-        ? null
-        : `
+      .map((post) =>
+          post.isPrivate
+              ? null
+              : `
   <url>
     <loc>${website}/posts/${post.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   `
-    )
-    .join('')}
+      )
+      .join('')}
 </urlset>`
 ```
 
@@ -238,17 +238,17 @@ import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
 
 export async function get() {
-  const posts = await getPosts()
-  const body = sitemap(posts)
+    const posts = await getPosts()
+    const body = sitemap(posts)
 
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
-  return {
-    headers,
-    body
-  }
+    const headers = {
+        'Cache-Control': 'max-age=0, s-maxage=3600',
+        'Content-Type': 'application/xml'
+    }
+    return {
+        headers,
+        body
+    }
 }
 
 const sitemap = (posts) => `<?xml version="1.0" encoding="UTF-8" ?>
@@ -266,18 +266,18 @@ const sitemap = (posts) => `<?xml version="1.0" encoding="UTF-8" ?>
     <priority>0.7</priority>
   </url>
   ${posts
-    .map((post) =>
-      post.isPrivate
-        ? null
-        : `
+      .map((post) =>
+          post.isPrivate
+              ? null
+              : `
   <url>
     <loc>${website}/posts/${post.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   `
-    )
-    .join('')}
+      )
+      .join('')}
 </urlset>`
 ```
 
@@ -299,18 +299,18 @@ import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
 
 export async function get() {
-  const posts = await getPosts()
-  const pages = [`about`, `newsletter`, `privacy-policy`]
-  const body = sitemap(posts, pages)
+    const posts = await getPosts()
+    const pages = [`about`, `newsletter`, `privacy-policy`]
+    const body = sitemap(posts, pages)
 
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml'
-  }
-  return {
-    headers,
-    body
-  }
+    const headers = {
+        'Cache-Control': 'max-age=0, s-maxage=3600',
+        'Content-Type': 'application/xml'
+    }
+    return {
+        headers,
+        body
+    }
 }
 
 const sitemap = (posts, pages) => `<?xml version="1.0" encoding="UTF-8" ?>
@@ -328,29 +328,29 @@ const sitemap = (posts, pages) => `<?xml version="1.0" encoding="UTF-8" ?>
     <priority>0.7</priority>
   </url>
   ${pages
-    .map(
-      (page) => `
+      .map(
+          (page) => `
   <url>
     <loc>${website}/${page}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   `
-    )
-    .join('')}
+      )
+      .join('')}
   ${posts
-    .map((post) =>
-      post.isPrivate
-        ? null
-        : `
+      .map((post) =>
+          post.isPrivate
+              ? null
+              : `
   <url>
     <loc>${website}/posts/${post.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   `
-    )
-    .join('')}
+      )
+      .join('')}
 </urlset>`
 ```
 
