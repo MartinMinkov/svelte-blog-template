@@ -92,14 +92,14 @@ return later in this post:
 
 ```js
 export async function get() {
-    const headers = {
-        'Cache-Control': 'max-age=0, s-maxage=3600',
-        'Content-Type': 'application/xml'
-    }
-    return {
-        headers,
-        body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0"></rss>`
-    }
+  const headers = {
+    'Cache-Control': 'max-age=0, s-maxage=3600',
+    'Content-Type': 'application/xml'
+  }
+  return {
+    headers,
+    body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0"></rss>`
+  }
 }
 ```
 
@@ -122,20 +122,20 @@ I'll import these and hardcode in a description for now.
 import { name, website } from '$lib/info'
 
 export async function get() {
-    const headers = {
-        'Cache-Control': 'max-age=0, s-maxage=3600',
-        'Content-Type': 'application/xml'
-    }
-    return {
-        headers,
-        body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
+  const headers = {
+    'Cache-Control': 'max-age=0, s-maxage=3600',
+    'Content-Type': 'application/xml'
+  }
+  return {
+    headers,
+    body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title>${name}</title>
         <link>${website}</link>
         <description>A blog built with SvelteKit about tech and stuff!</description>
       </channel>
     </rss>`
-    }
+  }
 }
 ```
 
@@ -154,13 +154,13 @@ The code for get posts is:
 
 ```js
 export async function getPosts() {
-    const posts = await Object.entries(import.meta.globEager('/posts/**/*.md'))
-        // get post metadata
-        .map(([, post]) => post.metadata)
-        // sort by date
-        .sort((a, b) => (a.date < b.date ? 1 : -1))
+  const posts = await Object.entries(import.meta.globEager('/posts/**/*.md'))
+    // get post metadata
+    .map(([, post]) => post.metadata)
+    // sort by date
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
 
-    return posts
+  return posts
 }
 ```
 
@@ -175,21 +175,21 @@ import { getPosts } from '$lib/get-posts'
 import { name, website } from '$lib/info'
 
 export async function get() {
-    const posts = await getPosts()
-    const body = xml(posts)
+  const posts = await getPosts()
+  const body = xml(posts)
 
-    const headers = {
-        'Cache-Control': 'max-age=0, s-maxage=3600',
-        'Content-Type': 'application/xml'
-    }
-    return {
-        headers,
-        body
-    }
+  const headers = {
+    'Cache-Control': 'max-age=0, s-maxage=3600',
+    'Content-Type': 'application/xml'
+  }
+  return {
+    headers,
+    body
+  }
 }
 
 const xml = (
-    posts
+  posts
 ) => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>${name}</title>
@@ -210,30 +210,30 @@ import { getPosts } from '$lib/get-posts'
 import { name, website } from '$lib/info'
 
 export async function get() {
-    const posts = await getPosts()
-    const body = xml(posts)
+  const posts = await getPosts()
+  const body = xml(posts)
 
-    const headers = {
-        'Cache-Control': 'max-age=0, s-maxage=3600',
-        'Content-Type': 'application/xml'
-    }
-    return {
-        headers,
-        body
-    }
+  const headers = {
+    'Cache-Control': 'max-age=0, s-maxage=3600',
+    'Content-Type': 'application/xml'
+  }
+  return {
+    headers,
+    body
+  }
 }
 
 const xml = (
-    posts
+  posts
 ) => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>${name}</title>
     <link>${website}</link>
     <description>A blog built with SvelteKit about tech and stuff!</description>
     ${posts
-        .map(
-            (post) =>
-                `
+      .map(
+        (post) =>
+          `
         <item>
           <title>${post.title}</title>
           <description>A blog built with SvelteKit about tech and stuff!</description>
@@ -250,8 +250,8 @@ const xml = (
           </content:encoded>
         </item>
       `
-        )
-        .join('')}
+      )
+      .join('')}
   </channel>
 </rss>`
 ```

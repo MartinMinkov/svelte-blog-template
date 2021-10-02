@@ -5,25 +5,25 @@ import adapter from '@sveltejs/adapter-static'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-    extensions: ['.svelte', ...mdsvexConfig.extensions],
-    // Consult https://github.com/sveltejs/svelte-preprocess
-    // for more information about preprocessors
-    preprocess: [
-        mdsvex(mdsvexConfig),
-        [
-            preprocess({
-                postcss: true
-            })
-        ]
-    ],
+  extensions: ['.svelte', ...mdsvexConfig.extensions],
+  // Consult https://github.com/sveltejs/svelte-preprocess
+  // for more information about preprocessors
+  preprocess: [
+    mdsvex(mdsvexConfig),
+    [
+      preprocess({
+        postcss: true
+      })
+    ]
+  ],
 
-    kit: {
-        target: '#svelte',
-        adapter: adapter({
-            pages: 'public',
-            assets: 'public'
-        })
-    }
+  kit: {
+    target: '#svelte',
+    adapter: adapter({
+      pages: 'public',
+      assets: 'public'
+    })
+  }
 }
 
 export default config
